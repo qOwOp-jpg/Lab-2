@@ -1,0 +1,392 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background-color: black;
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+main {
+    position: relative;
+    z-index: 2;
+
+    text-align: center;
+}
+
+
+/* -------------------
+   MAIN MOON
+------------------- */
+
+.moon-container {
+    position: relative;
+
+    width: 650px;
+    max-width: 85vw;
+
+    margin: 0 auto;
+
+    cursor: pointer;
+}
+
+#moon {
+    width: 100%;
+    display: block;
+
+    user-select: none;
+    -webkit-user-drag: none;
+
+    transition:
+        filter 1.2s ease,
+        transform 1.2s ease;
+}
+
+
+/* -------------------
+   EYES
+------------------- */
+
+.eye {
+    position: absolute;
+
+    width: 100px;
+
+    opacity: 0;
+
+    transform-origin: center center;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.1s ease;
+
+    pointer-events: none;
+
+    user-select: none;
+    -webkit-user-drag: none;
+
+    filter:
+        contrast(1.15)
+        brightness(0.9)
+        drop-shadow(0 0 4px rgba(0, 0, 0, 0.8));
+}
+
+.eye-left {
+    top: 37%;
+    left: 29%;
+
+    transform: rotate(-3deg) scaleY(1);
+}
+
+.eye-right {
+    top: 37%;
+    right: 29%;
+
+    transform: rotate(3deg) scaleY(1);
+}
+
+
+/* -------------------
+   INPUT
+------------------- */
+
+#commandInput {
+    margin-top: 30px;
+
+    width: 320px;
+    max-width: 80vw;
+
+    padding: 12px 10px;
+
+    background: transparent;
+    color: white;
+
+    border: none;
+    border-bottom: 1px solid #555;
+
+    outline: none;
+
+    text-align: center;
+
+    font-size: 16px;
+
+    letter-spacing: 1px;
+
+    transition: border-color 0.3s ease;
+}
+
+#commandInput::placeholder {
+    color: #666;
+}
+
+#commandInput:focus {
+    border-bottom-color: white;
+}
+
+
+/* -------------------
+   SUN FLASH
+------------------- */
+
+#whiteFlash {
+    position: fixed;
+    inset: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    background: white;
+
+    opacity: 0;
+    visibility: hidden;
+
+    z-index: 9999;
+
+    pointer-events: none;
+}
+
+#whiteFlash.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* -------------------------
+   INACTIVITY / RED MOON
+------------------------- */
+
+.moon-container.inactive #moon {
+    filter:
+        sepia(1)
+        saturate(8)
+        hue-rotate(310deg)
+        brightness(0.75)
+        contrast(1.4);
+
+    animation: bleedingMoon 2.2s ease-in-out infinite;
+}
+
+@keyframes bleedingMoon {
+
+    0% {
+        transform: scale(1);
+
+        filter:
+            sepia(1)
+            saturate(7)
+            hue-rotate(310deg)
+            brightness(0.75)
+            contrast(1.4)
+            drop-shadow(0 0 5px rgba(255, 0, 0, 0.25));
+    }
+
+    50% {
+        transform: scale(1.025);
+
+        filter:
+            sepia(1)
+            saturate(10)
+            hue-rotate(310deg)
+            brightness(0.65)
+            contrast(1.5)
+            drop-shadow(0 0 28px rgba(255, 0, 0, 0.8));
+    }
+
+    100% {
+        transform: scale(1);
+
+        filter:
+            sepia(1)
+            saturate(7)
+            hue-rotate(310deg)
+            brightness(0.75)
+            contrast(1.4)
+            drop-shadow(0 0 5px rgba(255, 0, 0, 0.25));
+    }
+}
+
+
+/* -------------------------
+   STARS
+------------------------- */
+
+#starContainer {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+
+    background: white;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 4px rgba(255, 255, 255, 0.8);
+}
+
+
+/* -------------------------
+   EXTRA MOONS
+------------------------- */
+
+.extra-moon-wrapper {
+    position: absolute;
+    width: 320px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+
+    z-index: 1;
+}
+
+
+.extra-moon-left {
+    left: -60%;
+    top: 40%;
+    width: 1000px;
+    transform: scale(0.92);
+}
+
+
+.extra-moon-right {
+    right: -80%;
+    top: -65%;
+    width: 1300px;
+    transform: scale(0.92);
+}
+
+
+.extra-moon-wrapper.show {
+    opacity: 1;
+    visibility: visible;
+
+    transform: scale(1);
+}
+
+
+.extra-moon-image {
+    width: 100%;
+    display: block;
+
+    user-select: none;
+    -webkit-user-drag: none;
+
+    pointer-events: none;
+}
+
+.moon-hitbox {
+    position: absolute;
+
+    width: 38%;
+    height: 38%;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 5;
+
+    cursor: pointer;
+}
+
+
+/* -------------------
+   SMALL SCREENS
+------------------- */
+
+@media (max-width: 700px) {
+
+    .moon-container {
+        width: 90vw;
+    }
+
+    .eye {
+        width: 14vw;
+        max-width: 95px;
+    }
+
+    .extra-moon-wrapper {
+        width: 44vw;
+        max-width: 280px;
+    }
+
+    .extra-moon-left {
+        left: -10%;
+        top: -10%;
+    }
+
+    .extra-moon-right {
+        right: -10%;
+        top: 62%;
+    }
+}
+
+/* -------------------------
+   FULLSCREEN MESSAGE
+------------------------- */
+
+#fullscreenMessage {
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    background: black;
+
+    color: #6b0000;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(32px, 7vw, 100px);
+
+    font-weight: bold;
+
+    letter-spacing: 8px;
+
+    text-align: center;
+
+    z-index: 99999;
+}
+
+
+body.fullscreen-horror #fullscreenMessage {
+    display: flex;
+}
+
+
+body.fullscreen-horror main,
+body.fullscreen-horror #starContainer,
+body.fullscreen-horror #whiteFlash {
+    display: none !important;
+}

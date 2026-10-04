@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Moon</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main>
+
+        <div class="moon-container" id="moonContainer">
+
+            <!-- LEFT / UPPER EXTRA MOON -->
+            <div
+                class="extra-moon-wrapper extra-moon-left"
+                id="moonLeftWrapper"
+            >
+                <img
+                    src="moon3.png"
+                    alt=""
+                    class="extra-moon-image"
+                    id="moonExtra2"
+                >
+
+                <div
+                    class="moon-hitbox"
+                    id="leftMoonHitbox"
+                ></div>
+            </div>
+
+
+            <!-- RIGHT / LOWER EXTRA MOON -->
+            <div
+                class="extra-moon-wrapper extra-moon-right"
+                id="moonRightWrapper"
+            >
+                <img
+                    src="moon1.png"
+                    alt=""
+                    class="extra-moon-image"
+                    id="moonExtra1"
+                >
+
+                <div
+                    class="moon-hitbox"
+                    id="rightMoonHitbox"
+                ></div>
+            </div>
+
+
+            <!-- MAIN MOON -->
+            <img
+                src="moon2.png"
+                alt="Full Moon"
+                id="moon"
+            >
+
+
+            <!-- LEFT EYE -->
+            <img
+                src="eye_L.png"
+                alt=""
+                class="eye eye-left"
+                id="leftEye"
+            >
+
+
+            <!-- RIGHT EYE -->
+            <img
+                src="eye_R.png"
+                alt=""
+                class="eye eye-right"
+                id="rightEye"
+            >
+
+        </div>
+
+
+        <input
+            type="text"
+            id="commandInput"
+            placeholder="say something..."
+            autocomplete="off"
+        >
+
+    </main>
+    
+    <div id="fullscreenMessage">
+        WHY ARE YOU HERE
+    </div>
+
+    <div id="whiteFlash"></div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
